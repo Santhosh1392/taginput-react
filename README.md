@@ -32,7 +32,6 @@ const TagsInputDemo= () => {
       placeholder="Enter to add"
     />
   )
-  }
 }
 ```
 
