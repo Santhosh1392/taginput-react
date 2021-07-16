@@ -1,0 +1,53 @@
+.tags-input__contianer {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+
+    .tags__section {
+        display: flex;
+        flex-wrap: wrap;
+    
+        .tag__box {
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-right: 5px;
+            background-color: #5a4679;
+            color: #fff;
+        }
+    
+        .tag__box.warning__box {
+            border: 2px solid #ff9189;
+            background-color: #ff9189;
+    
+            .close__mark {
+                color: #fff;
+            }
+        }
+    
+        .tag__box .close__mark {
+            font-size: 18px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    
+        .tags__input__box {
+            padding: 8px 0;
+            padding-left: 5px;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            margin-top: 2px;
+        }
+    }
+}
