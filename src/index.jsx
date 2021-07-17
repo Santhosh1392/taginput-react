@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useReducer, useRef, useState } from 'react'
 import './styles.scss'
 
 const getId = () => `_${Math.random().toString(36).substr(2, 9)}`;
 
 const TagItem = ({
-  tag, isLastIndex, backspacePressedCount, handleOnRemoveTag
+  tag, isLastIndex, backspacePressedCount, handleOnRemoveTag, tagClassName
 }) => {
   return (
     <div
       className={
-        `tag__box ${backspacePressedCount === 1 && isLastIndex && 'warning__box'}`
+        `tag__box ${tagClassName} ${backspacePressedCount === 1 && isLastIndex && 'warning__box'}`
       }
       key={`${getId()}`}
     >
@@ -36,16 +36,16 @@ const tagsListReducer = (state, action) => {
 }
 
 const TagsInput = ({
-  tags, placeholder, onChange
+  tags, placeholder, onChange, tagClassName
 }) => {
   const [tagsList, setTagsList] = useReducer(tagsListReducer, tags)
   const [tagInputValue, setTagInputValue] = useState('')
   const [backspacePressedCount, setBackspacePressedCount] = useState(0)
+  const inputRef = useRef(null)
 
   const focusInputElement = () => {
-    const element = document.querySelector('#tagsMainInputBox')
-    if (element) {
-      element.focus()
+    if (inputEl) {
+      inputEl.current.focus()
     }
   }
 
@@ -78,7 +78,11 @@ const TagsInput = ({
   }
 
   return (
-    <div className="tags-input__contianer" onClick={focusInputElement}>
+    <div
+      className="tags-input__contianer"
+      onClick={focusInputElement}
+      tagIndex="0"
+    >
       <div className="tags__section">
         {tagsList.map((tag, index) => {
           const isLastIndex = (index === (tagsList.length - 1))
@@ -88,6 +92,7 @@ const TagsInput = ({
               isLastIndex={isLastIndex}
               backspacePressedCount={backspacePressedCount}
               handleOnRemoveTag={handleOnRemoveTag}
+              tagClassName={tagClassName}
             />
           )}
         )}
@@ -99,7 +104,7 @@ const TagsInput = ({
           name="tagInput"
           value={tagInputValue}
           placeholder={placeholder}
-          id="tagsMainInputBox"
+          ref={inputRef}
         />
       </div>
     </div>
@@ -108,7 +113,8 @@ const TagsInput = ({
 
 TagsInput.defaultProps = {
   placeholder: 'Enter to add',
-  tags: []
+  tags: [],
+  tagClassName: ''
 }
 
 export default TagsInput

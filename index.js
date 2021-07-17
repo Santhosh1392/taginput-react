@@ -31,12 +31,12 @@ ___$insertStyle(".tags-input__contianer {\n  width: 100%;\n  padding: 5px;\n  bo
 const getId = () => `_${Math.random().toString(36).substr(2, 9)}`;
 
 const TagItem = ({
-  tag, isLastIndex, backspacePressedCount, handleOnRemoveTag
+  tag, isLastIndex, backspacePressedCount, handleOnRemoveTag, tagClassName
 }) => {
   return (
     React__default['default'].createElement('div', {
       className:
-        `tag__box ${backspacePressedCount === 1 && isLastIndex && 'warning__box'}`,
+        `tag__box ${tagClassName} ${backspacePressedCount === 1 && isLastIndex && 'warning__box'}`,
 
       key: `${getId()}`
     }, [
@@ -62,16 +62,16 @@ const tagsListReducer = (state, action) => {
 };
 
 const TagsInput = ({
-  tags, placeholder, onChange
+  tags, placeholder, onChange, tagClassName
 }) => {
   const [tagsList, setTagsList] = React.useReducer(tagsListReducer, tags);
   const [tagInputValue, setTagInputValue] = React.useState('');
   const [backspacePressedCount, setBackspacePressedCount] = React.useState(0);
+  const inputRef = React.useRef(null);
 
   const focusInputElement = () => {
-    const element = document.querySelector('#tagsMainInputBox');
-    if (element) {
-      element.focus();
+    if (inputEl) {
+      inputEl.current.focus();
     }
   };
 
@@ -104,7 +104,11 @@ const TagsInput = ({
   };
 
   return (
-    React__default['default'].createElement('div', {className: "tags-input__contianer", onClick: focusInputElement}, [
+    React__default['default'].createElement('div', {
+      className: "tags-input__contianer",
+      onClick: focusInputElement,
+      tagIndex: "0"
+    }, [
       React__default['default'].createElement('div', {className: "tags__section"}, [
         tagsList.map((tag, index) => {
           const isLastIndex = (index === (tagsList.length - 1));
@@ -113,7 +117,8 @@ const TagsInput = ({
               tag: tag,
               isLastIndex: isLastIndex,
               backspacePressedCount: backspacePressedCount,
-              handleOnRemoveTag: handleOnRemoveTag}
+              handleOnRemoveTag: handleOnRemoveTag,
+              tagClassName: tagClassName}
             )
           )}
         ),
@@ -125,7 +130,7 @@ const TagsInput = ({
           name: "tagInput",
           value: tagInputValue,
           placeholder: placeholder,
-          id: "tagsMainInputBox"}
+          ref: inputRef}
         )
       ])
     ])
@@ -134,7 +139,8 @@ const TagsInput = ({
 
 TagsInput.defaultProps = {
   placeholder: 'Enter to add',
-  tags: []
+  tags: [],
+  tagClassName: ''
 };
 
 exports.default = TagsInput;

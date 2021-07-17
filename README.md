@@ -20,7 +20,7 @@ yarn add taginput-react
 import React, { useState } from 'react'
 import TagsInput from 'taginput-react'
 
-const TagsInputDemo= () => {
+const TagsInputDemo = () => {
   const [tags, setTags] = useState([])
   const handleOnChange = (data) => {
     setTags(data)
@@ -34,6 +34,9 @@ const TagsInputDemo= () => {
   )
 }
 ```
+## Demo
+
+Check out [Online Demo](https://13ct0.csb.app/) here.
 
 ## Available PropTypes
 
@@ -42,3 +45,4 @@ const TagsInputDemo= () => {
 | tags | array | [] | Initial Tags |
 | placeholder | String | 'Enter to add' | Input placeholder |
 | onChange | Function | null | Callback function to get the entered Tags by user |
+| tagClassName | String | '' | Used to style tag element |
