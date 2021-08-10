@@ -117,13 +117,14 @@ const TagsInput = ({
     React__default['default'].createElement('div', {
       className: "tags-input__contianer",
       onClick: focusInputElement,
-      tagIndex: "0"
+      tabIndex: "0"
     }, [
       React__default['default'].createElement('div', {className: "tags__section"}, [
         tagsList.map((tag, index) => {
           const isLastIndex = (index === (tagsList.length - 1));
           return (
             TagItem({
+              key: `tagid-${index}`,
               tag: tag,
               isLastIndex: isLastIndex,
               backspacePressedCount: backspacePressedCount,
