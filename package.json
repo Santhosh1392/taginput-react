@@ -1,6 +1,6 @@
 {
   "name": "taginput-react",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Tags Input component for React",
   "main": "index.js",
   "scripts": {
