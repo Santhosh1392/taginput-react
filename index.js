@@ -58,7 +58,9 @@ const tagsListReducer = (state, action) => {
   } else if (type === 'REMOVE_TAG') {
     newState.splice(value, 1);
   } else if (type === 'SET_ALL_TAGS') {
-    newState = [...value];
+    if (state.length != value.length) {
+      newState = [...value];
+    }
   }
   return newState
 };
@@ -78,7 +80,9 @@ const TagsInput = ({
   };
 
   React.useEffect(() => {
-    setTagsList({ type: 'SET_ALL_TAGS', value: tags});
+    if (tagsList.length !== tags.length) {
+      setTagsList({ type: 'SET_ALL_TAGS', value: tags});
+    }
   }, [tags]);
 
   React.useEffect(() => {
