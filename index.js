@@ -74,8 +74,8 @@ const TagsInput = ({
   const inputRef = React.useRef(null);
 
   const focusInputElement = () => {
-    if (inputEl) {
-      inputEl.current.focus();
+    if (inputRef) {
+      inputRef.current.focus();
     }
   };
 
