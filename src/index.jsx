@@ -26,11 +26,13 @@ const TagItem = ({
 
 const tagsListReducer = (state, action) => {
   const { type, value } = action
-  const newState = [...state]
+  let newState = [...state]
   if (type ===  'ADD_TAG' && value) {
     newState.push(value)
   } else if (type === 'REMOVE_TAG') {
     newState.splice(value, 1)
+  } else if (type === 'SET_ALL_TAGS') {
+    newState = [...value]
   }
   return newState
 }
@@ -48,6 +50,10 @@ const TagsInput = ({
       inputEl.current.focus()
     }
   }
+
+  useEffect(() => {
+    setTagsList({ type: 'SET_ALL_TAGS', value: tags})
+  }, [tags])
 
   useEffect(() => {
     if (onChange instanceof Function) {

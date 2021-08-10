@@ -37,9 +37,9 @@ const TagsInputDemo = () => {
 ## Demo
 ![Tag Input Demo](https://github.com/Santhosh1392/taginput-react/blob/main/demo/TagInput-demo.gif)
 
-Check out [Online Demo](https://13ct0.csb.app/) here.
+Check out [Online Demo](https://korimi.in/projects/taginput) here.
 
-## Available PropTypes
+## Available Props
 
 | Prop Name | Type | Default Value | Description |
 | --- | --- | --- | --- |
